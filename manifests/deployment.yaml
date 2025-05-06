@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: wi-bucket-demo
+  name: wi-bucket-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wi-bucket-demo
+  template:
+    metadata:
+      labels:
+        app: wi-bucket-demo
+    spec:
+      serviceAccountName: wi-demo-bucket4
+      containers:
+      - image: us-docker.pkg.dev/gke-demos-345619/workload-identity/demo:v0.0.2
+        name: wi-bucket-demo
+        command: ["/demo"]
